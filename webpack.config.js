@@ -9,16 +9,20 @@ const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = () => {
     return {
+        entry: path.join(__dirname, '/src/index.jsx'),
         output: {
             filename: "bundle.js"
         },
         module: {
             rules: [
                 {
-                    test: /\.js|.jsx/,
+                    test: /\.jsx$/,
                     use: "babel-loader"
                 }
             ]
+        },
+        resolve: {
+            extensions: ['.js', '.jsx']
         },
         plugins: [htmlWebpackPluginConfig]
     }
