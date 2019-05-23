@@ -6,8 +6,10 @@
   "scripts": {
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
-    "dev": "npm run webpack-dev-server -- --env.mode --development",
-    "prod": "npm run webpack -- --env.mode --production"
+    "dev": "npm run webpack-dev-server -- --env.mode --development --hot",
+    "prod": "npm run webpack -- --env.mode --production",
+    "debug":"node --inspect --inspect-brk ./node_modules/webpack/bin/webpack.js",
+    "dev:debug": "npm run debug -- --env.mode development"
   },
   "repository": {
     "type": "git",
@@ -24,8 +26,18 @@
   },
   "homepage": "https://github.com/ShivamLatawa/react-skeleton#readme",
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "path": "^0.12.7",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
