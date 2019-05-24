@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpackMerge = require("webpack-merge");
+const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
 
 const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html'),
@@ -8,35 +9,33 @@ const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body',
 });
 
-module.exports = ({mode}) => {
-    return {
-        mode: "production",
-        entry: path.join(__dirname, '/src/index.tsx'),
-        output: {
-            filename: "bundle.js"
+module.exports = ({mode} = {mode: "production"}) => {
+    return webpackMerge({
+            mode: "production",
+            entry: path.join(__dirname, '/src/index.tsx'),
+            output: {
+                filename: "bundle.js"
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.tsx$/,
+                        use: ["awesome-typescript-loader"]
+                    },
+                    {
+                        test: /\.jsx$/,
+                        use: ["babel-loader"]
+                    }
+                ]
+            },
+            resolve: {
+                extensions: ['.js', '.jsx', '.tsx']
+            },
+            plugins: [htmlWebpackPluginConfig],
+            performance: {
+                hints: false
+            }
         },
-        module: {
-            rules: [
-                {
-                    test: /\.tsx$/,
-                    use: ["awesome-typescript-loader"]
-                },
-                {
-                    test: /\.jsx$/,
-                    use: ["babel-loader"]
-                },
-                {
-                    test: /\.scss$/,
-                    use: [mode === "production" ? MiniCssExtractPlugin.loader: "style-loader", "css-loader", "sass-loader"]
-                }
-            ]
-        },
-        resolve: {
-            extensions: ['.js', '.jsx', '.tsx']
-        },
-        plugins: [htmlWebpackPluginConfig, new MiniCssExtractPlugin()],
-        performance: {
-            hints: false
-        }
-    }
+        modeConfig(mode)
+    )
 }
