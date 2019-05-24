@@ -10,6 +10,7 @@ const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = () => {
     return {
+        mode: "production",
         entry: path.join(__dirname, '/src/index.tsx'),
         output: {
             filename: "bundle.js"
@@ -26,7 +27,7 @@ module.exports = () => {
                 },
                 {
                     test: /\.scss$/,
-                    use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+                    use: [mode === "production" ? MiniCssExtractPlugin.loader: "style-loader", "css-loader", "sass-loader"]
                 }
             ]
         },
