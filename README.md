@@ -1,2 +1,8 @@
 # react-skeleton
-Skeleton app for react applications
+Skeleton app for web applications using
+- Webpack
+- React
+- Typescript
+- SCSS
+- Eslint
+- Jest
