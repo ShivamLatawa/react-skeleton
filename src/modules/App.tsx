@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Hello from "./Hello";
+import Hello from "./Home/components/Hello";
 
 const App = () => <Hello name="Shivam" />;
 

@@ -8,7 +8,7 @@ const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body',
 });
 
-module.exports = () => {
+module.exports = ({mode}) => {
     return {
         mode: "production",
         entry: path.join(__dirname, '/src/index.tsx'),
@@ -34,6 +34,9 @@ module.exports = () => {
         resolve: {
             extensions: ['.js', '.jsx', '.tsx']
         },
-        plugins: [htmlWebpackPluginConfig, new MiniCssExtractPlugin()]
+        plugins: [htmlWebpackPluginConfig, new MiniCssExtractPlugin()],
+        performance: {
+            hints: false
+        }
     }
 }
