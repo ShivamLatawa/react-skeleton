@@ -5,24 +5,28 @@ const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html'),
     filename: 'index.html',
     inject: 'body',
-  });  
+});
 
 module.exports = () => {
     return {
-        entry: path.join(__dirname, '/src/index.jsx'),
+        entry: path.join(__dirname, '/src/index.tsx'),
         output: {
             filename: "bundle.js"
         },
         module: {
             rules: [
                 {
+                    test: /\.tsx$/,
+                    use: ["awesome-typescript-loader"]
+                },
+                {
                     test: /\.jsx$/,
-                    use: "babel-loader"
+                    use: ["babel-loader"]
                 }
             ]
         },
         resolve: {
-            extensions: ['.js', '.jsx']
+            extensions: ['.js', '.jsx', '.tsx']
         },
         plugins: [htmlWebpackPluginConfig]
     }

@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "sourceMap": true,
+      "noImplicitAny": false,
+      "module": "commonjs",
+      "target": "es5",
+      "lib": ["es5", "es6", "dom"],
+      "removeComments": true,
+      "allowSyntheticDefaultImports": false,
+      "jsx": "react",
+      "allowJs": true,
+      "baseUrl": "./"
+    },
+    "exclude": [
+        "node_modules"
+    ]
+  }
