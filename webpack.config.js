@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html'),
@@ -22,6 +23,10 @@ module.exports = () => {
                 {
                     test: /\.jsx$/,
                     use: ["babel-loader"]
+                },
+                {
+                    test: /\.scss$/,
+                    use: ["style-loader", "css-loader", "sass-loader"]
                 }
             ]
         },
