@@ -1,8 +1,1 @@
-# react-skeleton
-Skeleton app for web applications using
-- Webpack
-- React
-- Typescript
-- SCSS
-- Eslint
-- Jest
+# A simple form builder using react and redux
